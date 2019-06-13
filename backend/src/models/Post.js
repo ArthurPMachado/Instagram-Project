@@ -1,5 +1,6 @@
 //const variables
 const mongoose = require('mongoose');
+
 //columns that exists in our database
 const PostSchema = new mongoose.Schema({
     author: String,
