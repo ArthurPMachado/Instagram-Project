@@ -1,2 +1,2 @@
-# Projeto-Instagram
-Projeto de clonar a interface tanto web como nativa do Instagram
+# Instagram Project
+Project to clone instagram interface and funcionalities using Node, ReactJs and ReactNative
