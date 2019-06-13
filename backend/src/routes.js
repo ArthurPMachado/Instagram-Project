@@ -1,9 +1,15 @@
-//const variables
+//const imports
 const express = require('express');
+const multer = require('multer');
+const PostController = require('./controllers/PostController');
+
+//const objects
 const routes = new express.Router();
+const upload = multer();
 
-routes.get('/', (req, res) => {
-    return res.send(`Hello ${req.query.name}`);
-})
+//using the routes methods
+routes.post('/posts', upload.single('image'),PostController.store);
 
+
+//exporting the modules
 module.exports = routes;
