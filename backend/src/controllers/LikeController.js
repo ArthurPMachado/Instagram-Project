@@ -11,6 +11,8 @@ module.exports = {
 
         await post.save();
     
+        req.io.emit('like', post);
+
         return resp.json(post);
     }
 };

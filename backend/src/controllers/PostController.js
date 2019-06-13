@@ -37,6 +37,8 @@ module.exports = {
             hashtags,
             image: fileName,
         });
+
+        req.io.emit('Conexao estabelecida', post);
         
         return resp.json(post);
     }
