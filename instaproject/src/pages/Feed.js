@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import api from '../services/api';
 
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 
 import camera from '../assets/camera.png';
+import more from '../assets/more.png';
+import like from '../assets/like.png';
+import comment from '../assets/comment.png';
+import send from '../assets/send.png';
 
 export default class Feed extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -13,7 +18,60 @@ export default class Feed extends Component {
     ),
   });
 
+  state = {
+      feed: [],
+  };
+
+  async componentDidMount() {
+      //this.registerToSocket();
+
+      const response = await api.get('posts');
+
+      this.setState({ feed: response.data });
+  } 
+
   render() {
-    return <View />;
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={this.state.feed}
+          keyExtractor={post => post._id}
+          renderItem={({ item }) => (
+            <View style={styles.feedItem}>
+
+              <View style={styles.feedItemHeader}>
+                <View style={styles.userInfo}>
+                  <Text style={styles.name}>{item.author}</Text>
+                  <Text style={styles.place}>{item.place}</Text>
+                </View>
+
+                <Image source={more} />
+              </View>
+
+              <Image style={styles.feedImage} source={{ uri: `http://10.0.3.2:3333/${item.image}` }} />
+
+
+              <View styles={styles.feedItemFooter}>
+                <View styles={styles.actions}>
+                  <TouchableOpacity onPress={() => {}}>
+                    <Image source={like} />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => {}}>
+                    <Image source={comment} />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => {}}>
+                    <Image source={send} />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          )}
+        />
+      </View>
+    );
   }
 }
+
+const styles = StyleSheet.create({
+
+});
