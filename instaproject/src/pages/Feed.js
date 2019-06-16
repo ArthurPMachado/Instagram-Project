@@ -48,21 +48,25 @@ export default class Feed extends Component {
                 <Image source={more} />
               </View>
 
-              <Image style={styles.feedImage} source={{ uri: `http://10.0.3.2:3333/${item.image}` }} />
+              <Image style={styles.feedImage} source={{ uri: `http://10.0.3.2:3333/files/${item.image}` }} />
 
 
-              <View styles={styles.feedItemFooter}>
-                <View styles={styles.actions}>
-                  <TouchableOpacity onPress={() => {}}>
+              <View style={styles.feedItemFooter}>
+                <View style={styles.actions}>
+                  <TouchableOpacity style={styles.action} onPress={() => {}}>
                     <Image source={like} />
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => {}}>
+                  <TouchableOpacity style={styles.action} onPress={() => {}}>
                     <Image source={comment} />
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => {}}>
+                  <TouchableOpacity style={styles.action} onPress={() => {}}>
                     <Image source={send} />
                   </TouchableOpacity>
                 </View>
+
+                <Text style={styles.likes}>{item.likes} curtidas</Text>
+                <Text style={styles.descritpion}>{item.descritpion}</Text>
+                <Text style={styles.hashtags}>{item.hashtags}</Text>
               </View>
             </View>
           )}
@@ -73,5 +77,64 @@ export default class Feed extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  feedItem: {
+    marginTop: 20,
+  },
+
+  feedItemHeader: {
+    paddingHorizontal: 15,
+
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  name: {
+    fontSize: 14,
+    color: '#000',
+  },
+
+  place: {
+    fontSize: 12,
+    color: '#666',
+    marginTop: 2,
+  },
+
+  feedImage: {
+    width: '100%',
+    height: 400,
+    marginVertical: 15,
+  },
+
+  feedItemFooter: {
+    paddingHorizontal: 15,
+  },
+
+  actions: {
+    flexDirection: 'row',
+  },
+
+  action: {
+    marginRight: 8,
+  },
+
+  likes: {
+    marginTop: 15,
+    fontWeight: 'bold',
+    color: '#000',
+  }, 
+
+  descritpion: {
+    lineHeight: 18,
+    color: '#000',
+  },  
+
+  hashtags: {
+    color: '#7159c1',
+  }
 
 });
